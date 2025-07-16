@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>{{ course.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/course.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>{{ course.title }}</h1>
+    <p><strong>Instructor:</strong> {{ course.instructor }}</p>
+    <p>{{ course.description }}</p>
+
+    <h2>Modules</h2>
+    {% if modules %}
+        <ul>
+            {% for module in modules %}
+                <li>
+                    <a href="{{ url_for('learner.module_detail', module_id=module._id) }}">
+                        {{ module.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No modules available yet.</p>
+    {% endif %}
+
+    <h2>Resources</h2>
+    {% if course.resources %}
+        <ul>
+            {% for resource in course.resources %}
+                <li>
+                    {% if resource.type == "video" %}
+                        🎥 <a href="{{ resource.url }}" target="_blank">Video</a>
+                    {% elif resource.type == "pdf" %}
+                        📄 <a href="{{ resource.url }}" target="_blank">PDF</a>
+                    {% else %}
+                        🔗 <a href="{{ resource.url }}" target="_blank">Other</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No additional resources available.</p>
+    {% endif %}
+
+    <a href="{{ url_for('learner.courses') }}" class="back-link">← Back to Courses</a>
+</div>
+{% endblock %}

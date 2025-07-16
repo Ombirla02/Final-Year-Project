@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Supervisor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/supervisor_dashboard.css') }}">
+
+{% endblock %}
+{% block body %}
+    <p>Supervisor Dashboard</p>
+    <div class="dashboard">
+        <h2>Supervisor Dashboard</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Registered Students</h3>
+                <p>View lab-wise student list</p>
+                <button onclick="showRegisteredStudents()">View</button>
+            </div>
+            <div class="card">
+                <h3>Certificate Issuance</h3>
+                <p>Issue certificates to students</p>
+                <button onclick="showCertificateIssuance()">Issue</button>
+            </div>
+            <div class="card">
+                <h3>Doubt Solving</h3>
+                <p>Respond to student queries</p>
+                <button onclick="showDoubtSolving()">Resolve</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Registered Students Modal -->
+    <div id="registeredStudentsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registeredStudentsModal')">&times;</span>
+            <h3>Registered Students for AI Lab</h3>
+            <table>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Enrolled Course</th>
+                </tr>
+                <tr><td>Alice Smith</td><td>Machine Learning</td></tr>
+                <tr><td>Bob Johnson</td><td>Deep Learning</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Certificate Issuance Modal -->
+    <div id="certificateIssuanceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('certificateIssuanceModal')">&times;</span>
+            <h3>Certificate Issuance</h3>
+            <table>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Surname</th>
+                    <th>Institute</th>
+                    <th>User ID</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>Alice</td><td>Smith</td><td>IIT Delhi</td><td>1001</td>
+                    <td><button onclick="issueCertificate(1001)">Issue</button></td>
+                </tr>
+                <tr>
+                    <td>Bob</td><td>Johnson</td><td>NIT Trichy</td><td>1002</td>
+                    <td><button onclick="issueCertificate(1002)">Issue</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Doubt Solving Modal -->
+    <div id="doubtSolvingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('doubtSolvingModal')">&times;</span>
+            <h3>Doubt Solving</h3>
+            <table>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Enrolled Course</th>
+                    <th>Doubt</th>
+                    <th>Response</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>Alice Smith</td><td>Machine Learning</td><td>How to optimize loss function By the properties of logarithms, we can rearrange the equation to read 
+                        with 
+                       . If 
+                       , we may divide by it and get 
+                       , which implies 
+                       . Hence, we have 3 possible values 
+                       , namely
+                       </td>
+                    <td><input type="text" id="response1"></td>
+                    <td><button onclick="submitResponse(1)">Submit</button></td>
+                </tr>
+                <tr>
+                    <td>Bob Johnson</td><td>Deep Learning</td><td>What is backpropagation?</td>
+                    <td><input type="text" id="response2"></td>
+                    <td><button onclick="submitResponse(2)">Submit</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/supervisor_dashboard.js') }}"></script>
+{% endblock %}

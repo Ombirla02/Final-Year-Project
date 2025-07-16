@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Courses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/courses.css') }}">
+{% endblock %}
+
+{% block body %}
+<h1>Courses</h1>
+
+{% if enrolled_courses %}
+<h2>Your Enrolled Courses</h2>
+<div class="grid">
+    {% for course in enrolled_courses %}
+    <div class="course-card">
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+        <a href="{{ url_for('learner.course_detail', course_id=course._id) }}" class="enroll-btn">View Course</a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<h2>Available Courses</h2>
+<div class="grid">
+    {% for course in all_courses %}
+    <div class="course-card">
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+        <form action="{{ url_for('learner.enroll', course_id=course._id) }}" method="POST">
+            <button type="submit" class="enroll-btn">Enroll</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+<a href="{{ url_for('learner.dashboard')}}" class="back-link">Back to Dashboard</a>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block head %} {% endblock %}
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" style="z-index: 999;">
+        <div class="nav-container">
+            <ul class="nav-links">
+
+                {% if current_user.is_authenticated and current_user.role=='learner' %}
+                    <li><a href="{{ url_for('learner.dashboard') }}" class="nav-logo">MyLearning</a></li>
+                    <li><a href="{{ url_for('learner.courses') }}">Courses</a></li>
+                    <li><a href="{{ url_for('learner.internship') }}">Internships</a></li>
+                {% elif current_user.is_authenticated and current_user.role=='industry_professional' %}
+                    <li><a href="{{ url_for('industry.dashboard') }}" class="nav-logo">MyLearning</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('home.index') }}" class="nav-logo">Eduvision</a></li>
+                {% endif %}
+
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Message Flash -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- Debug Info -->
+    {% if current_user.is_authenticated %}
+    <p class="debug">Logged in as {{ current_user.username }} ({{ current_user.email }}) - Role: {{ current_user.role }}
+    </p>
+    {% else %}
+    <p class="debug">No user is logged in.</p>
+    {% endif %}
+
+    {% block body %} {% endblock %}
+</body>
+
+</html>

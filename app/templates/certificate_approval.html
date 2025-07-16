@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>Certificate Approval</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #0073e6;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #28a745;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<h2>Pending Certificate Approvals</h2>
+{% if eligible_entries %}
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Course ID</th>
+            <th>Course Title</th>
+            <th>Action</th>
+        </tr>
+        {% for entry in eligible_entries %}
+        <tr>
+            <td>{{ entry.username }}</td>
+            <td>{{ entry.email }}</td>
+            <td>{{ entry.course_id }}</td>
+            <td>{{entry.course_title}}</td>
+            <td>
+                <form method="POST">
+                    <input type="hidden" name="user_id" value="{{ entry.user_id }}">
+                    <input type="hidden" name="course_id" value="{{ entry.course_id }}">
+                    <input type="hidden" name="username" value="{{ entry.username }}">
+                    <button type="submit">Approve Certificate</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No certificate requests pending approval.</p>
+{% endif %}
+{% endblock %}

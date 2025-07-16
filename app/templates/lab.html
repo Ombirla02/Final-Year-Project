@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+  <title>Lab Location - EduVision</title>
+  <link href="{{ url_for('static', filename='css/lab.css') }}" rel="stylesheet">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+{% endblock %}
+
+{% block body %}
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1 class="innovation-title">Explore Our Advanced VR Labs</h1>
+      <p>Enhancing Vocational Education with Immersive Experiences</p>
+    </div>
+    <div class="hero-image">
+      <img src="{{ url_for('static', filename='images/vrhandset.png') }}" alt="VR Handset" style="width: 60%; height: auto; display: block; margin: 0 auto;">
+
+    </div>
+  </section>
+
+  <!-- Lab Table Section -->
+  <section class="lab-section">
+    <h2 class="section-title">LOCATION OF LABS </h2>
+    <BR>
+    <a href="lab_list.pdf" download="lab_list.pdf" class="download-btn">Download lab list</a>
+    <br><br>
+    <table id="opportunityTable" class="display">
+      <thead>
+        <tr>
+          <th >S.No.</th>
+          <th>STATE</th>
+          <th>CITY</th>
+          <th>LAB NAME </th>
+          <th>CONTACT INFO</th>
+          <th>COURSE NAME</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>MAHARASHTRA</td>
+          <td>Nashik</td>
+          <td>AICTE IDEA Lab,KK Wagh College Of Engineering</td>
+          <td>p.no:1292434 <br>mail:kkwagh@gmail.com
+          </td>
+          <td>3-d printing , drone piloting, vr , robotics </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>MAHARASHTRA</td>
+          <td>Mumbai</td>
+          <td> AICTE IDEA Lab,Pillai College of Engineering </td>
+          <td>p.no:1292434 <br>mail:pillai@gmail.com</td>
+          <td>AI and Automation</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>MAHARASHTRA</td>
+            <td>Ahmednagar</td>
+            <td>XYZ</td>
+            <td>p.no:1292434 <br>mail:XYZ@gmail.com</td>
+            <td>Advance industrial equipments</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>MAHARASHTRA</td>
+            <td>JALGAON</td>
+            <td>XYZ</td>
+            <td>p.no:1292434 <br>mail:xyz@gmail.com</td>
+            <td>Safety measures</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>MADHYA PRADESH</td>
+            <td>BHOPAL</td>
+            <td>AICTE-IDEA Lab,Lakshmi Narain College of Technology (LNCT)</td>
+            <td>p.no:1292434 <br>mail:lnct@gmail.com</td>
+            <td>New techs </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>MADHYA PRADESH</td>
+            <td>GWALIOR</td>
+            <td>XYZ</td>
+            <td>p.no:1292434 <br>mail:xyz@gmail.com</td>
+            <td>A</td>
+          </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- jQuery and DataTables JS -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#opportunityTable').DataTable();
+    });
+  </script>
+  {% endblock %}

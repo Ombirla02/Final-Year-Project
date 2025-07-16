@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Learner Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/learner_dashboard.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="dashboard-container">
+    <h1>Welcome to Learner Dashboard</h1>
+    <p>Explore opportunities and enhance your skills!</p>
+
+    <div class="dashboard-links">
+        <a href="{{ url_for('learner.internship') }}">View Internships</a>
+        <a href="{{ url_for('learner.courses') }}">View Available Courses</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,132 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Main Container */
+.form-wrapper {
+    display: flex;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 800px;
+    width: 90%;
+}
+
+/* Form Container */
+.form-container {
+    flex: 1;
+    padding: 40px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+.form-align-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Submit Button */
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    background: #0056b3;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #004494;
+}
+
+/* Alternative Register Section */
+.alt-container {
+    flex: 1;
+    background: #0056b3;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.alt-container h1 {
+    margin-bottom: 10px;
+}
+
+.alt-button {
+    margin-top: 15px;
+}
+
+.alt-button a {
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.alt-button a:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .form-container, .alt-container {
+        width: 100%;
+        padding: 30px;
+    }
+
+    input {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    button {
+        width: 90%;
+    }
+}
