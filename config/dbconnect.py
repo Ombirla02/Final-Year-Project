@@ -1,10 +1,15 @@
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
-import os
+from urllib.parse import quote_plus
 from dotenv import load_dotenv
+import os
+
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+username = quote_plus(os.getenv("DB_USERNAME"))
+password = quote_plus(os.getenv("DB_PASSWORD"))
+
+DATABASE_URL = f"mongodb+srv://{username}:{password}@cluster0.ccwzz8u.mongodb.net/"
 
 def connect_db():
     uri = DATABASE_URL
